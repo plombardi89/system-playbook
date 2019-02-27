@@ -25,6 +25,7 @@
     - name: dropbox
       vars:
         dropbox_version: "2019.01.31-1"
+    - name: keybase
 #    - name: bazel
 #      bazel_version: 0.22.0
 #    - name: haxorof.docker-ce
