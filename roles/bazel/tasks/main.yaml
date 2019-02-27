@@ -1,0 +1,6 @@
+---
+- include_tasks: install_fedora.yaml
+  when: ansible_distribution == "Fedora"
+
+- include_tasks: install_ubuntu.yaml
+  when: ansible_distribution == "Ubuntu"

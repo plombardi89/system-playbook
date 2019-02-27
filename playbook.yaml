@@ -1,0 +1,52 @@
+---
+
+- hosts: localhost
+  roles:
+    - name: base
+      vars:
+        fedora_packages:
+          - dnf-plugins-core
+          - easy-rsa
+          - firefox
+          - fish
+          - gcc
+          - gcc-g++
+          - kernel-devel
+          - libxcrypt
+          - make
+          - openvpn
+          - socat
+          - sudo
+          - vim
+          - vlc
+    - name: google-chrome
+      vars:
+        channel: stable
+    - name: dropbox
+      vars:
+        dropbox_version: "2019.01.31-1"
+#    - name: bazel
+#      bazel_version: 0.22.0
+#    - name: haxorof.docker-ce
+#      vars:
+#        docker_channel: true
+#        docker_latest_version: true
+#        docker_sdk: true
+#    - name: haxorof.hashicorp-tools
+#      hashicorp_tools:
+#        packer:
+#          state: latest
+#        terraform:
+#          state: latest
+#        nomad:
+#          state: absent
+#        consul:
+#          state: absent
+    - name: golang
+      vars:
+        go_version: "go1.12"
+        go_tarball_checksum: "sha256:750a07fef8579ae4839458701f4df690e0b20b8bcce33b437e4df89c451b6f13"
+#    - name: openjdk
+#      vars:
+#        openjdk_version: ""
+#        openjdk_tarball_checksum: "sha256:99be79935354f5c0df1ad293620ea36d13f48ec3ea870c838f20c504c9668b57"

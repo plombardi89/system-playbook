@@ -1,0 +1,12 @@
+---
+- name: fedora | ensure essential packages are installed
+  dnf:
+    name: "{{ fedora_packages }}"
+    state: latest
+  when: ansible_distribution == "Fedora"
+
+- name: ubuntu | ensure essential packages are installed
+  apt:
+    name: "{{ ubuntu_packages }}"
+    state: latest
+  when: ansible_distribution == "Ubuntu"

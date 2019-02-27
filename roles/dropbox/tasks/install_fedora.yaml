@@ -1,0 +1,5 @@
+---
+- name: fedora | ensure dropbox is installed
+  dnf:
+    name: https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-{{ dropbox_version }}.fedora.x86_64.rpm
+    state: present

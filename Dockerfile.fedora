@@ -1,0 +1,14 @@
+FROM fedora:29
+
+RUN dnf -y install \
+    ansible \
+    make \
+    sudo \
+    virtualenv
+
+RUN useradd dev -G wheel \
+    && echo "dev ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/dev \
+    && chmod 0440 /etc/sudoers.d/dev \
+    && ln -sf /usr/bin/python3 /usr/bin/python
+
+USER dev

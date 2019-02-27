@@ -1,0 +1,30 @@
+---
+- name: ensure go tarball is downloaded
+  get_url:
+    url: "{{ go_tarball_url }}"
+    dest: /tmp/{{ go_tarball_name }}
+    checksum: "{{ go_tarball_checksum }}"
+
+- name: register the current go version (if any)
+  command: /usr/local/go/bin/go version
+  ignore_errors: yes
+  register: go_current_version
+  changed_when: false
+
+- name: ensure old version of go is removed
+  file:
+    path: /usr/local/go
+    state: absent
+  when: go_current_version is failed or go_current_version.stdout != go_version
+
+- name: ensure the go tarball is extracted
+  unarchive:
+    src: /tmp/{{ go_tarball_name }}
+    dest: /usr/local
+    copy: no
+  when: go_current_version is failed or go_current_version.stdout != go_version
+
+- name: ensure go tarball is removed
+  file:
+    path: /tmp/{{ go_tarball_name }}
+    state: absent
