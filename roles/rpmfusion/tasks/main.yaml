@@ -1,0 +1,6 @@
+---
+- name: fedora | ensure rpmfusion repositories are present
+  dnf:
+    name: "{{ rpmfusion_repositories }}"
+    state: present
+  when: ansible_distribution == "Fedora"

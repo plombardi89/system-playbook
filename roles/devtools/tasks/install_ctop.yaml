@@ -1,0 +1,17 @@
+---
+- name: ensure ctop is downloaded
+  get_url:
+    url: "{{ ctop_download_url }}"
+    dest: /tmp/ctop
+    mode: "+x"
+    checksum: "{{ ctop_checksum }}"
+
+- name: ensure old version of ctop is removed
+  file:
+    path: /usr/local/bin/ctop
+    state: absent
+
+- name: ensure the go tarball is extracted
+  command: mv /tmp/ctop /usr/local/bin/ctop
+  args:
+    creates: /usr/local/bin/ctop

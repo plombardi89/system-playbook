@@ -1,6 +1,15 @@
 ---
-- include_tasks: install_fedora.yaml
-  when: ansible_distribution == "Fedora"
+- name: ensure installer is downloaded
+  get_url:
+    url: "{{ bazel_installer_url }}"
+    dest: /tmp/bazel-installer-{{ bazel_version }}
+    checksum: "{{ bazel_checksum }}"
+    mode: 0755
 
-- include_tasks: install_ubuntu.yaml
-  when: ansible_distribution == "Ubuntu"
+- name: ensure bazel is installed
+  command: /tmp/bazel-installer-{{ bazel_version }}
+  args:
+    creates: "/usr/local/bin/bazel"
+
+- name: ensure bazel installation is finalized
+  command: "/usr/local/bin/bazel version"

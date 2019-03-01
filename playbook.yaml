@@ -2,15 +2,25 @@
 
 - hosts: localhost
   roles:
+    - name: devtools
+      vars:
+        ctop_version: "0.7.2"
+        ctop_checksum: "sha256:e1af73e06f03caf0c59ac488c1cda97348871f6bb47772c31bbd314ddc494383"
+    - name: rpmfusion
     - name: base
       vars:
         fedora_packages:
+          - bzip2
+          - curl
           - dnf-plugins-core
           - easy-rsa
           - firefox
           - fish
           - gcc
           - gcc-g++
+          - gzip
+          - htop
+          - jq
           - kernel-devel
           - libxcrypt
           - make
@@ -18,7 +28,9 @@
           - socat
           - sudo
           - vim
+          - unzip
           - vlc
+          - xz
     - name: google-chrome
       vars:
         channel: stable
@@ -26,23 +38,22 @@
       vars:
         dropbox_version: "2019.01.31-1"
     - name: keybase
-#    - name: bazel
-#      bazel_version: 0.22.0
-#    - name: haxorof.docker-ce
-#      vars:
-#        docker_channel: true
-#        docker_latest_version: true
-#        docker_sdk: true
-#    - name: haxorof.hashicorp-tools
-#      hashicorp_tools:
-#        packer:
-#          state: latest
-#        terraform:
-#          state: latest
-#        nomad:
-#          state: absent
-#        consul:
-#          state: absent
+    - name: bazel
+    - name: haxorof.docker-ce
+      vars:
+        docker_channel: stable
+        docker_latest_version: true
+        docker_sdk: true
+    - name: haxorof.hashicorp-tools
+      hashicorp_tools:
+        packer:
+          state: latest
+        terraform:
+          state: latest
+        nomad:
+          state: absent
+        consul:
+          state: latest
     - name: golang
       vars:
         go_version: "go1.12"

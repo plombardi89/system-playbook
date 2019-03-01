@@ -3,6 +3,7 @@ set -o errexit
 set -o nounset
 set -o verbose
 
+/usr/local/bin/ctop -v
 /usr/local/go/bin/go version
 /usr/bin/dropbox status
 /usr/bin/firefox --version
